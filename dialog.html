@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <script type='text/javascript'>    
+      window.onload = function(){
+        handleDownload();
+      }
+      function handleDownload() {
+        var content = <?= main(); ?>;
+        var blob = new Blob([ content ], { "type" : "text/plain"});
+        var link = document.createElement('a');
+        // ファイル名を GAS から取得する
+        link.download = <?= getFileName(); ?>;
+        link.href = window.URL.createObjectURL(blob);
+        link.click();
+        // ダイアログを閉じる
+        google.script.host.close();
+      }
+    </script>
+  </head>
+</html>
