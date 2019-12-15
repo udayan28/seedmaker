@@ -11,8 +11,13 @@ function main() {
 
 function makeSeedText(sheetName, sheetValue) {
   // seed1行目の作成
-  var spLabel = sheetName.split('_');
-  var modelName = spLabel[0][0].toUpperCase() + spLabel[0].slice(1) + spLabel[1][0].toUpperCase() + spLabel[1].slice(1);
+  if (sheetName.indexOf('_') !== -1){
+    var spLabel = sheetName.split('_');
+    var modelName = spLabel[0][0].toUpperCase() + spLabel[0].slice(1) + spLabel[1][0].toUpperCase() + spLabel[1].slice(1);
+  } else {
+    var modelName = sheetName[0].toUpperCase() + sheetName.slice(1)
+  }
+
   var firstLine = modelName + '.seed(:id,\n';
 
   // indentの作成
